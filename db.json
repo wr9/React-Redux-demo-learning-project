@@ -2,9 +2,21 @@
   "posts": [
     {
       "title": "title",
-      "text": "",
+      "text": "text",
       "id": 0,
       "author": "andrea"
+    },
+    {
+      "title": "title2",
+      "text": "text2",
+      "id": 1,
+      "author": "andrea2"
+    },
+    {
+      "title": "title3",
+      "text": "text3",
+      "id": 3,
+      "author": "andrea3"
     }
   ]
 }
