@@ -1,5 +1,6 @@
 import React from 'react';
 import { Card } from 'antd';
+import { Link } from 'react-router-dom';
 
 const Post = ({ post }) => (
   <div>
@@ -10,6 +11,7 @@ const Post = ({ post }) => (
       <p>
         <b>Author:</b> {post.author}
       </p>
+      <Link to={"/" + post.id} >More</Link>
     </Card>
   </div>
 );
