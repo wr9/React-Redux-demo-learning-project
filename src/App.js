@@ -15,10 +15,6 @@ const { Header, Content, Footer } = Layout;
 
 class App extends Component {
 
-  // componentDidMount() {
-  //   this.props.loadPosts();
-  // }
-
   render() {
     return (
       <Layout className="layout">
@@ -29,7 +25,7 @@ class App extends Component {
               <Link to="/">Home</Link>
             </Menu.Item>
             <Menu.Item key="2">
-              <Link to="/create" onClick={this.props.selectEmptyPost}>New</Link>
+              <Link to="/create" onClick={this.props.createPost}>New</Link>
             </Menu.Item>
           </Menu>
         </Header>
@@ -50,11 +46,11 @@ class App extends Component {
 }
 
 const mapStateToProps = state => ({
-  //posts: state.posts,
+
 });
 
 const mapDispatchToProps = dispatch => ({
-  selectEmptyPost: id => dispatch(selectPost()),
+  createPost: () => dispatch(selectPost()),
   loadPosts: () => dispatch(loadPosts())
 });
 

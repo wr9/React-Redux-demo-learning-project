@@ -6,18 +6,14 @@ import { connect } from 'react-redux';
 import { selectPost, deletePost } from 'redux/modules/posts';
 
 class PostDetailed extends Component {
-  constructor(props) {
-    super(props);
-    this.deletePost = this.deletePost.bind(this);
-  }
-
   componentDidMount() {
     this.props.loadPost(this.props.match.params.id);
   }
-  deletePost() {
-    this.props.deletePost(this.props.match.params.id);
-    this.props.history.push('/');
-  }
+
+  deletePost = () => {
+    const { deletePost, history, match } = this.props;
+    deletePost(match.params.id).then(() => history.push('/'));
+  };
 
   render() {
     const { post } = this.props;

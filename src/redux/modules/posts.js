@@ -73,12 +73,11 @@ export const deletePost = id => dispatch => {
     .catch(error => dispatch({ type: DELETE_POST_FAIL, error }));
 };
 
-export const selectPost = id => dispatch => {
-  return dispatch({
+export const selectPost = id => dispatch =>
+  dispatch({
     type: SELECT_POST,
     id,
   });
-};
 
 // reducer
 const reducer = (state = initialState, action) => {
@@ -126,7 +125,6 @@ const reducer = (state = initialState, action) => {
         error: null,
       };
     case EDIT_POST_SUCCESS:
-    //console.log(state.items);
       return {
         ...state,
         loading: false,
@@ -157,13 +155,13 @@ const reducer = (state = initialState, action) => {
         error: action.error,
       };
     case SELECT_POST:
-    // console.log(action.id)
-    // console.log(state)
       return {
         ...state,
         loading: true,
         error: null,
-        selectedPost: action.id ? Object.assign({}, state.items.find(item => item.id === action.id)) : {},
+        selectedPost: action.id
+          ? Object.assign({}, state.items.find(item => item.id === action.id))
+          : {},
       };
     default:
       return state;

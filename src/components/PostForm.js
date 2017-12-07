@@ -8,9 +8,6 @@ class PostForm extends Component {
   constructor(props) {
     super(props);
     this.state = { post: {} };
-    this.handleChange = this.handleChange.bind(this);
-    this.handleReset = this.handleReset.bind(this);
-    this.handleSave = this.handleSave.bind(this);
   }
 
   componentDidMount() {
@@ -18,27 +15,25 @@ class PostForm extends Component {
     this.setState({ post: this.props.post });
   }
 
-  handleChange(event) {
+  handleChange = event => {
     let post = this.state.post;
     post[event.target.name] = event.target.value;
     this.setState({ post: post });
-  }
+  };
 
-  handleReset() {
-    //this.props.loadPost(this.props.match.params.id);
-    //this.setState({ post: this.props.post });
+  handleReset = () => {
     this.props.history.push('/');
-  }
+  };
 
-  handleSave() {
-    this.props.post.id
-      ? this.props.editPost(this.state.post)
-      : this.props.createPost(this.state.post);
-    this.props.history.push('/');
-  }
+  handleSave = () => {
+    const { post, editPost, createPost, history } = this.props;
+    post.id
+      ? editPost(this.state.post)
+      : createPost(this.state.post);
+    history.push('/');
+  };
 
   render() {
-    //console.log(this.props.post);
     return (
       <div>
         <Input
