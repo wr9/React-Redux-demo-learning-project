@@ -157,10 +157,8 @@ const reducer = (state = initialState, action) => {
     case SELECT_POST:
       return {
         ...state,
-        loading: true,
-        error: null,
         selectedPost: action.id
-          ? Object.assign({}, state.items.find(item => item.id === action.id))
+          ? {...state.items.find(item => item.id === action.id)}
           : {},
       };
     default:
