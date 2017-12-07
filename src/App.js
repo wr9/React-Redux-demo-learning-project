@@ -14,9 +14,9 @@ import { Layout, Menu } from 'antd';
 const { Header, Content, Footer } = Layout;
 
 class App extends Component {
-  componentDidMount() {
-    this.props.loadPosts();
-  }
+  // componentDidMount() {
+  //   this.props.loadPosts();
+  // }
 
   render() {
     // console.log(this.props.posts);
@@ -37,7 +37,11 @@ class App extends Component {
         <Content>
           <div style={{ padding: 24, minHeight: 280 }}>
             <div>
-              <Route exact path="/" render={() => <PostList posts={this.props.posts} />} />
+            <Route exact path="/" component={PostList} />
+            <Route exact path="/:id" component={PostDetailed} />
+            <Route path="/edit/:id" component={PostForm} />
+
+              {/* <Route exact path="/" render={() => <PostList posts={this.props.posts} />} />
               <Route
                 path="/:id"
                 render={props => (
@@ -56,7 +60,7 @@ class App extends Component {
                     save={this.props.editPost}
                   />
                 )}
-              />
+              /> */}
             </div>
           </div>
         </Content>

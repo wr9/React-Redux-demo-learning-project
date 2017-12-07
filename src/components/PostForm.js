@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { Input, Button } from 'antd';
 
+import { connect } from 'react-redux';
+import { selectPost } from 'redux/modules/posts';
+
 class PostForm extends Component {
   constructor(props) {
     super(props);
@@ -41,4 +44,12 @@ class PostForm extends Component {
   }
 }
 
-export default PostForm;
+const mapStateToProps = state => ({
+  post: state.posts.selectedPost,
+});
+
+const mapDispatchToProps = dispatch => ({
+  loadPost: id => dispatch(selectPost(id)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(PostForm);
