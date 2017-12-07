@@ -126,6 +126,7 @@ const reducer = (state = initialState, action) => {
         error: null,
       };
     case EDIT_POST_SUCCESS:
+    //console.log(state.items);
       return {
         ...state,
         loading: false,
@@ -156,11 +157,13 @@ const reducer = (state = initialState, action) => {
         error: action.error,
       };
     case SELECT_POST:
+    // console.log(action.id)
+    // console.log(state)
       return {
         ...state,
         loading: true,
         error: null,
-        selectedPost: state.items.find(item => item.id === action.id)
+        selectedPost: action.id ? Object.assign({}, state.items.find(item => item.id === action.id)) : {},
       };
     default:
       return state;
