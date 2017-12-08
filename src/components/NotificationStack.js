@@ -6,7 +6,7 @@ import { deleteNotification } from 'redux/modules/notifications';
 
 class NotificationStack extends Component {
   render() {
-    const { notifications } = this.props;
+    const { notifications, deleteNotification } = this.props;
     return (
       <div
         style={{
@@ -19,7 +19,7 @@ class NotificationStack extends Component {
         {notifications.items.map(notification => (
           <div key={notification.id}>
             <Notification
-              deleteNotification={this.props.deleteNotification}
+              deleteNotification={deleteNotification}
               notification={notification}
             />
           </div>

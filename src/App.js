@@ -55,7 +55,7 @@ const mapStateToProps = state => ({});
 const mapDispatchToProps = dispatch => ({
   createPost: () => dispatch(selectPost()),
   loadPosts: () => dispatch(loadPosts()),
-  createNotification: () => dispatch(createNotification({ title: 'a', id: Math.random(), autoHideTime: 2000  })),
+  createNotification: () => dispatch(createNotification({ title: 'a', text: 'aaa', id: Math.random(), autoHideTime: 2000, type: 'succes'  })),
 });
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));
