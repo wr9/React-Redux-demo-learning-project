@@ -125,7 +125,6 @@ const reducer = (state = initialState, action) => {
         error: null,
       };
     case EDIT_POST_SUCCESS:
-    console.log(state.items)
       return {
         ...state,
         loading: false,
