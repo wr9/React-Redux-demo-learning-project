@@ -4,9 +4,10 @@ import { Route, Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { selectPost, loadPosts } from 'redux/modules/posts';
 
-import PostList from 'components/PostList';
-import PostDetailed from 'components/PostDetailed';
-import PostForm from 'components/PostForm';
+import PostList from 'containers/PostList';
+import PostDetailed from 'containers/PostDetailed';
+import PostForm from 'containers/PostForm';
+import NotificationStack from 'components/NotificationStack';
 
 import './App.css';
 import 'antd/dist/antd.css';
@@ -18,6 +19,7 @@ class App extends Component {
   render() {
     return (
       <Layout className="layout">
+      {/* <NotificationStack/> */}
         <Header>
           <div className="logo" />
           <Menu theme="dark" mode="horizontal" style={{ lineHeight: '64px' }}>

@@ -125,6 +125,7 @@ const reducer = (state = initialState, action) => {
         error: null,
       };
     case EDIT_POST_SUCCESS:
+    console.log(state.items)
       return {
         ...state,
         loading: false,
@@ -158,7 +159,7 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         selectedPost: action.id
-          ? {...state.items.find(item => item.id === action.id)}
+          ? state.items.find(item => item.id === action.id)
           : {},
       };
     default:
