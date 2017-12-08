@@ -3,16 +3,17 @@ import { Card, Button } from 'antd';
 
 class Notification extends Component {
   render() {
+    const { notification } = this.props;
     return (
       <div>
         <Card style={{ width: 300 }}>
-          <div style={{ width: 300, display: 'flex' }}>
+          <div style={{ width: 300, display: 'flex', justifyContent: 'space-around' }}>
             {/* <div> Slika</div> */}
             <div>
-              <b>Title:</b> Warning
+              <b>{notification.title}</b>
               <p>Text</p>
             </div>
-            <div>Close</div>
+            <Button onClick={() => this.props.deleteNotification(notification.id)}>x</Button>
           </div>
         </Card>
       </div>

@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
 import Notification from 'components/Notification';
 
+import { connect } from 'react-redux';
+import { deleteNotification } from 'redux/modules/notifications';
+
 class NotificationStack extends Component {
   render() {
+    const { notifications } = this.props;
     return (
       <div
         style={{
@@ -12,10 +16,25 @@ class NotificationStack extends Component {
           zIndex: 1,
         }}
       >
-        <Notification/>
+        {notifications.items.map(notification => (
+          <div key={notification.id}>
+            <Notification
+              deleteNotification={this.props.deleteNotification}
+              notification={notification}
+            />
+          </div>
+        ))}
       </div>
     );
   }
 }
 
-export default NotificationStack;
+const mapStateToProps = state => ({
+  notifications: state.notifications,
+});
+
+const mapDispatchToProps = dispatch => ({
+  deleteNotification: id => dispatch(deleteNotification(id)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(NotificationStack);

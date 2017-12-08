@@ -3,6 +3,7 @@ import { Route, Link, withRouter } from 'react-router-dom';
 
 import { connect } from 'react-redux';
 import { selectPost, loadPosts } from 'redux/modules/posts';
+import { createNotification } from 'redux/modules/notifications';
 
 import PostList from 'containers/PostList';
 import PostDetailed from 'containers/PostDetailed';
@@ -11,7 +12,7 @@ import NotificationStack from 'components/NotificationStack';
 
 import './App.css';
 import 'antd/dist/antd.css';
-import { Layout, Menu } from 'antd';
+import { Layout, Menu, Button } from 'antd';
 const { Header, Content, Footer } = Layout;
 
 class App extends Component {
@@ -35,6 +36,7 @@ class App extends Component {
         <Content>
           <div style={{ padding: 24, minHeight: 280 }}>
             <div>
+              <Button onClick={this.props.createNotification}>Add notification</Button>
               <Route exact path="/" component={PostList} />
               <Route path="/post/:id" component={PostDetailed} />
               <Route path="/edit/:id" component={PostForm} />
@@ -53,6 +55,7 @@ const mapStateToProps = state => ({});
 const mapDispatchToProps = dispatch => ({
   createPost: () => dispatch(selectPost()),
   loadPosts: () => dispatch(loadPosts()),
+  createNotification: () => dispatch(createNotification({title: 'a', id: Math.random()})),
 });
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));
