@@ -55,11 +55,7 @@ const mapStateToProps = state => ({});
 const mapDispatchToProps = dispatch => ({
   createPost: () => dispatch(selectPost()),
   loadPosts: () => dispatch(loadPosts()),
-  createNotification: () => {
-    let id = Math.random();
-    dispatch(createNotification({ title: 'a', id: id }));
-    window.setTimeout(() => dispatch(deleteNotification(id)), 1000);
-  },
+  createNotification: () => dispatch(createNotification({ title: 'a', id: Math.random(), autoHideTime: 2000  })),
 });
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));
