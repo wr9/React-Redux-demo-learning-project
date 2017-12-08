@@ -11,7 +11,7 @@ const Post = ({ post }) => (
       <p>
         <b>Author:</b> {post.author}
       </p>
-      <Link to={"/" + post.id} >More</Link>
+      <Link to={`/post/${post.id}`} >More</Link>
     </Card>
   </div>
 );

@@ -11,12 +11,14 @@ const EDIT_POST_FAIL = 'whatever/posts/EDIT_POST_FAIL';
 const DELETE_POST = 'whatever/posts/DELETE_POST';
 const DELETE_POST_SUCCESS = 'whatever/posts/DELETE_POST_SUCCESS';
 const DELETE_POST_FAIL = 'whatever/posts/DELETE_POST_FAIL';
+const SELECT_POST = 'whatever/posts/SELECT_POST';
 
 // initial state
 const initialState = {
   loading: false,
   items: [],
   error: null,
+  selectedPost: null,
 };
 
 // action creators
@@ -71,6 +73,12 @@ export const deletePost = id => dispatch => {
     .catch(error => dispatch({ type: DELETE_POST_FAIL, error }));
 };
 
+export const selectPost = id => dispatch =>
+  dispatch({
+    type: SELECT_POST,
+    id,
+  });
+
 // reducer
 const reducer = (state = initialState, action) => {
   switch (action.type) {
@@ -120,7 +128,7 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
-        items: state.items.map(post => post.id === action.post.id ? action.post : post),
+        items: state.items.map(post => (post.id === action.post.id ? action.post : post)),
       };
     case EDIT_POST_FAIL:
       return {
@@ -145,6 +153,13 @@ const reducer = (state = initialState, action) => {
         ...state,
         loading: false,
         error: action.error,
+      };
+    case SELECT_POST:
+      return {
+        ...state,
+        selectedPost: action.id
+          ? state.items.find(item => item.id === action.id)
+          : {},
       };
     default:
       return state;

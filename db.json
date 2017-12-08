@@ -1,34 +1,16 @@
 {
   "posts": [
     {
-      "title": "title3edit",
-      "text": "text3",
-      "id": "3",
-      "author": "andrea3"
+      "title": "aaa2",
+      "text": "aaa",
+      "author": "aaa",
+      "id": "g5rVfKz"
     },
     {
-      "title": "gdf",
-      "text": "gfd",
-      "author": "fgd",
-      "id": "11"
-    },
-    {
-      "title": "ljk",
-      "text": "jlk",
-      "author": "j",
-      "id": "12"
-    },
-    {
-      "title": "titleTEST",
-      "text": "text",
-      "id": "13",
-      "author": "andrea"
-    },
-    {
-      "text": "gfh",
-      "title": "fgh",
-      "author": "fgh",
-      "id": "14"
+      "title": "gfh",
+      "text": "ghf",
+      "author": "hg",
+      "id": "TPhis6C"
     }
   ]
 }
