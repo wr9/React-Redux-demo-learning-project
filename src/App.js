@@ -7,6 +7,7 @@ import { selectPost, loadPosts } from 'redux/modules/posts';
 import PostList from 'containers/PostList';
 import PostDetailed from 'containers/PostDetailed';
 import PostForm from 'containers/PostForm';
+import NotificationStack from 'components/NotificationStack';
 
 import './App.css';
 import 'antd/dist/antd.css';
@@ -14,10 +15,10 @@ import { Layout, Menu } from 'antd';
 const { Header, Content, Footer } = Layout;
 
 class App extends Component {
-
   render() {
     return (
       <Layout className="layout">
+        <NotificationStack />
         <Header>
           <div className="logo" />
           <Menu theme="dark" mode="horizontal" style={{ lineHeight: '64px' }}>
@@ -25,17 +26,19 @@ class App extends Component {
               <Link to="/">Home</Link>
             </Menu.Item>
             <Menu.Item key="2">
-              <Link to="/create" onClick={this.props.createPost}>New</Link>
+              <Link to="/create" onClick={this.props.createPost}>
+                New
+              </Link>
             </Menu.Item>
           </Menu>
         </Header>
         <Content>
           <div style={{ padding: 24, minHeight: 280 }}>
             <div>
-            <Route exact path="/" component={PostList} />
-            <Route path="/post/:id" component={PostDetailed} />
-            <Route path="/edit/:id" component={PostForm} />
-            <Route path="/create" component={PostForm} />
+              <Route exact path="/" component={PostList} />
+              <Route path="/post/:id" component={PostDetailed} />
+              <Route path="/edit/:id" component={PostForm} />
+              <Route path="/create" component={PostForm} />
             </div>
           </div>
         </Content>
@@ -45,13 +48,11 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-
-});
+const mapStateToProps = state => ({});
 
 const mapDispatchToProps = dispatch => ({
   createPost: () => dispatch(selectPost()),
-  loadPosts: () => dispatch(loadPosts())
+  loadPosts: () => dispatch(loadPosts()),
 });
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));
