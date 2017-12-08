@@ -3,7 +3,7 @@ import { Route, Link, withRouter } from 'react-router-dom';
 
 import { connect } from 'react-redux';
 import { selectPost, loadPosts } from 'redux/modules/posts';
-import { createNotification } from 'redux/modules/notifications';
+import { createNotification, deleteNotification } from 'redux/modules/notifications';
 
 import PostList from 'containers/PostList';
 import PostDetailed from 'containers/PostDetailed';
@@ -55,7 +55,11 @@ const mapStateToProps = state => ({});
 const mapDispatchToProps = dispatch => ({
   createPost: () => dispatch(selectPost()),
   loadPosts: () => dispatch(loadPosts()),
-  createNotification: () => dispatch(createNotification({title: 'a', id: Math.random()})),
+  createNotification: () => {
+    let id = Math.random();
+    dispatch(createNotification({ title: 'a', id: id }));
+    window.setTimeout(() => dispatch(deleteNotification(id)), 1000);
+  },
 });
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));
