@@ -4,11 +4,10 @@ import { Route, Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { selectPost, loadPosts } from 'redux/modules/posts';
 
-import PostList from 'containers/PostList';
-import PostDetailed from 'containers/PostDetailed';
-import PostForm from 'containers/PostForm';
-import NotificationPanel from 'containers/NotificationPanel';
-import NotificationStack from 'containers/NotificationStack';
+import PostList from 'containers/Post/PostList';
+import PostDetailed from 'containers/Post/PostDetailed';
+import PostForm from 'containers/Post/PostForm';
+import NotificationStack from 'containers/NotificationStack/NotificationStack';
 
 import './App.css';
 import 'antd/dist/antd.css';
@@ -40,7 +39,6 @@ class App extends Component {
               <Route path="/post/:id" component={PostDetailed} />
               <Route path="/edit/:id" component={PostForm} />
               <Route path="/create" component={PostForm} />
-              <Route path="/notifications" component={NotificationPanel} />
             </div>
           </div>
         </Content>

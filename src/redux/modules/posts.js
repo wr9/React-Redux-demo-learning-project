@@ -37,7 +37,7 @@ export const loadPosts = () => dispatch => {
           title: 'Loading success',
           text: '',
           id: Math.random(),
-          autoHideTime: 4500,
+          autoHideTime: 45000,
           type: 'success',
         }),
       );

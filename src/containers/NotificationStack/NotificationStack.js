@@ -1,27 +1,19 @@
 import React, { Component } from 'react';
-import Notification from 'components/Notification';
+import Notification from 'components/Notification/Notification';
 
 import { connect } from 'react-redux';
 import { deleteNotification } from 'redux/modules/notifications';
+
+import './NotificationStack.css';
 
 class NotificationStack extends Component {
   render() {
     const { notifications, deleteNotification } = this.props;
     return (
-      <div
-        style={{
-          position: 'fixed',
-          top: 0,
-          right: 0,
-          zIndex: 1
-        }}
-      >
+      <div className="notification-stack">
         {notifications.items.map(notification => (
           <div key={notification.id}>
-            <Notification
-              deleteNotification={deleteNotification}
-              notification={notification}
-            />
+            <Notification deleteNotification={deleteNotification} notification={notification} />
           </div>
         ))}
       </div>
