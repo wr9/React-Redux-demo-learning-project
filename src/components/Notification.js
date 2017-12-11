@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Card, Button } from 'antd';
+import { Card } from 'antd';
 
 class Notification extends Component {
   render() {
@@ -44,7 +44,7 @@ class Notification extends Component {
               onClick={() => this.props.deleteNotification(notification.id)}
               style={{ cursor: 'pointer', position: 'relative', top: -10, right: -5 }}
             >
-              x
+              <i className="fas fa-times" />
             </div>
           </div>
         </Card>

@@ -14,7 +14,7 @@ class PostList extends Component {
     return (
       <div>
       <h2>Posts</h2>
-      {posts.items.map(post => (
+      {posts.items.length > 0 && posts.items.map(post => (
         <div key={post.id}>
           <Post post={post}/>
         </div>

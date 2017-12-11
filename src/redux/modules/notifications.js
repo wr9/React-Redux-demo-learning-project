@@ -1,5 +1,5 @@
 // action types
-const CREATE_NOTIFICATION = 'whatever/notifications/CREATE_NOTIFICATION';
+export const CREATE_NOTIFICATION = 'whatever/notifications/CREATE_NOTIFICATION';
 const DELETE_NOTIFICATION = 'whatever/notifications/DELETE_NOTIFICATION';
 
 // initial state

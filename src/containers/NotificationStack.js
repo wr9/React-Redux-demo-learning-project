@@ -13,7 +13,7 @@ class NotificationStack extends Component {
           position: 'fixed',
           top: 0,
           right: 0,
-          zIndex: 1,
+          zIndex: 1
         }}
       >
         {notifications.items.map(notification => (

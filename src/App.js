@@ -3,23 +3,23 @@ import { Route, Link, withRouter } from 'react-router-dom';
 
 import { connect } from 'react-redux';
 import { selectPost, loadPosts } from 'redux/modules/posts';
-import { createNotification, deleteNotification } from 'redux/modules/notifications';
 
 import PostList from 'containers/PostList';
 import PostDetailed from 'containers/PostDetailed';
 import PostForm from 'containers/PostForm';
-import NotificationStack from 'components/NotificationStack';
+import NotificationPanel from 'containers/NotificationPanel';
+import NotificationStack from 'containers/NotificationStack';
 
 import './App.css';
 import 'antd/dist/antd.css';
-import { Layout, Menu, Button } from 'antd';
+import { Layout, Menu } from 'antd';
 const { Header, Content, Footer } = Layout;
 
 class App extends Component {
   render() {
     return (
       <Layout className="layout">
-        <NotificationStack />
+      <NotificationStack />
         <Header>
           <div className="logo" />
           <Menu theme="dark" mode="horizontal" style={{ lineHeight: '64px' }}>
@@ -36,11 +36,11 @@ class App extends Component {
         <Content>
           <div style={{ padding: 24, minHeight: 280 }}>
             <div>
-              <Button onClick={this.props.createNotification}>Add notification</Button>
               <Route exact path="/" component={PostList} />
               <Route path="/post/:id" component={PostDetailed} />
               <Route path="/edit/:id" component={PostForm} />
               <Route path="/create" component={PostForm} />
+              <Route path="/notifications" component={NotificationPanel} />
             </div>
           </div>
         </Content>
@@ -55,7 +55,6 @@ const mapStateToProps = state => ({});
 const mapDispatchToProps = dispatch => ({
   createPost: () => dispatch(selectPost()),
   loadPosts: () => dispatch(loadPosts()),
-  createNotification: () => dispatch(createNotification({ title: 'a', text: 'aaa', id: Math.random(), autoHideTime: 20000, type: 'info'  })),
 });
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));
