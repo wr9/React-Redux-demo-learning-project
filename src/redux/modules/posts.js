@@ -57,6 +57,8 @@ export const loadPosts = () => dispatch => {
     });
 };
 export const createPost = post => dispatch => {
+  post.dateCreated = Date.now();
+
   dispatch({
     type: CREATE_POST,
   });

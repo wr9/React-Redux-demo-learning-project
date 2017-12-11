@@ -27,6 +27,9 @@ class PostDetailed extends Component {
             <p>
               <b>Text:</b> {post.text}
             </p>
+            <p>
+              <b>Created:</b> {new Date(post.dateCreated).toLocaleString()}
+            </p>
             <Link to={`/edit/${post.id}`}>Edit</Link>
             <Button onClick={this.deletePost}>Delete</Button>
           </Card>
