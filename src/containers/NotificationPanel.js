@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import NotificationStack from 'containers/NotificationStack';
 
 import { connect } from 'react-redux';
 import { createNotification } from 'redux/modules/notifications';
@@ -19,28 +18,28 @@ class NotificationPanel extends Component {
   };
 
   render() {
+    const {notification} = this.state;
     return (
       <div>
         <Input
-          value={this.state.notification.title}
+          value={notification.title}
           onChange={this.handleChange}
           name="title"
           placeholder="Title"
         />
         <Input
-          value={this.state.notification.text}
+          value={notification.text}
           onChange={this.handleChange}
           name="text"
           placeholder="Text"
         />
         <Input
-          value={this.state.notification.autoHideTime}
+          value={notification.autoHideTime}
           onChange={this.handleChange}
           name="autoHideTime"
           placeholder="Autohide time(in ms)"
         />
-        <Button onClick={() => this.props.createNotification(this.state.notification)}>Add notification</Button>
-        {/* <NotificationStack /> */}
+        <Button onClick={() => this.props.createNotification(notification)}>Add notification</Button>
       </div>
     );
   }

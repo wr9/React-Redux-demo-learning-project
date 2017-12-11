@@ -32,14 +32,11 @@ export const deleteNotification = id => dispatch =>
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case CREATE_NOTIFICATION:
-      //console.log(state.items);
       return {
         ...state,
         items: state.items.concat(action.notification),
       };
     case DELETE_NOTIFICATION:
-      // console.log(state.items)
-      // console.log(action.id)
       return {
         ...state,
         items: state.items.filter(notification => notification.id !== action.id),
