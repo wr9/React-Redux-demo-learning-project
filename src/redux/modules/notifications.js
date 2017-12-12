@@ -2,6 +2,13 @@
 export const CREATE_NOTIFICATION = 'whatever/notifications/CREATE_NOTIFICATION';
 const DELETE_NOTIFICATION = 'whatever/notifications/DELETE_NOTIFICATION';
 
+const defaultNotification = {
+  title: '',
+  text: '',
+  autoHideTime: 4500,
+  type: '',
+}
+
 // initial state
 const initialState = {
   items: [],
@@ -9,17 +16,11 @@ const initialState = {
 
 // action creators
 export const createNotification = notification => dispatch => {
-  let newNotification = {
-    title: '',
-    text: '',
+  const newNotification = {
+    ...defaultNotification,
+    ...notification,
     id: Math.random(),
-    autoHideTime: 0,
-    type: '',
   };
-  newNotification.title = notification.title;
-  newNotification.text = notification.text;
-  newNotification.autoHideTime = notification.autoHideTime;
-  newNotification.type = notification.type;
 
   newNotification.timeoutId = window.setTimeout(
     () =>
