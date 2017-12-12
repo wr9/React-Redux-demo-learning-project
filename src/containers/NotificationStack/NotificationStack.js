@@ -26,10 +26,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  deleteNotification: notification => {
-    dispatch(deleteNotification(notification.id));
-    window.clearTimeout(notification.timeoutId);
-  },
+  deleteNotification: notification => dispatch(deleteNotification(notification)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(NotificationStack);

@@ -7,7 +7,7 @@ const defaultNotification = {
   text: '',
   autoHideTime: 4500,
   type: '',
-}
+};
 
 // initial state
 const initialState = {
@@ -35,11 +35,13 @@ export const createNotification = notification => dispatch => {
     notification: newNotification,
   });
 };
-export const deleteNotification = id => dispatch =>
-  dispatch({
+export const deleteNotification = notification => dispatch => {
+  window.clearTimeout(notification.timeoutId);
+  return dispatch({
     type: DELETE_NOTIFICATION,
-    id,
+    id: notification.id,
   });
+};
 
 // reducer
 const reducer = (state = initialState, action) => {
