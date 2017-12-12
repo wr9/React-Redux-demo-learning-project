@@ -35,12 +35,12 @@ export const createNotification = notification => dispatch => {
     notification: newNotification,
   });
 };
-export const deleteNotification = notification => dispatch => {
+export const deleteNotification = notification => {
   window.clearTimeout(notification.timeoutId);
-  return dispatch({
+  return {
     type: DELETE_NOTIFICATION,
     id: notification.id,
-  });
+  };
 };
 
 // reducer
