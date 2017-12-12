@@ -1,3 +1,5 @@
+import * as notificationsActions from 'redux/modules/notifications';
+
 // action types
 const LOAD_POSTS = 'whatever/posts/LOAD_POSTS';
 const LOAD_POSTS_SUCCESS = 'whatever/posts/LOAD_POSTS_SUCCESS';
@@ -29,10 +31,30 @@ export const loadPosts = () => dispatch => {
 
   return fetch('http://localhost:3001/posts')
     .then(response => response.json())
-    .then(posts => dispatch({ type: LOAD_POSTS_SUCCESS, posts }))
-    .catch(error => dispatch({ type: LOAD_POSTS_FAIL, error }));
+    .then(posts => {
+      dispatch(
+        notificationsActions.createNotification({
+          title: 'Loading success',
+          text: '',
+          type: 'success',
+        }),
+      );
+      return dispatch({ type: LOAD_POSTS_SUCCESS, posts });
+    })
+    .catch(error => {
+      dispatch(
+        notificationsActions.createNotification({
+          title: 'Loading error',
+          text: error.toString(),
+          type: 'error',
+        }),
+      );
+      return dispatch({ type: LOAD_POSTS_FAIL, error });
+    });
 };
 export const createPost = post => dispatch => {
+  post.dateCreated = Date.now();
+
   dispatch({
     type: CREATE_POST,
   });
@@ -43,8 +65,26 @@ export const createPost = post => dispatch => {
     headers: { 'Content-Type': 'application/json' },
   })
     .then(response => response.json())
-    .then(post => dispatch({ type: CREATE_POST_SUCCESS, post }))
-    .catch(error => dispatch({ type: CREATE_POST_FAIL, error }));
+    .then(post => {
+      dispatch(
+        notificationsActions.createNotification({
+          title: 'Post created',
+          text: '',
+          type: 'success',
+        }),
+      );
+      return dispatch({ type: CREATE_POST_SUCCESS, post });
+    })
+    .catch(error => {
+      dispatch(
+        notificationsActions.createNotification({
+          title: 'Post not saved',
+          text: error.toString(),
+          type: 'error',
+        }),
+      );
+      return dispatch({ type: CREATE_POST_FAIL, error });
+    });
 };
 export const editPost = post => dispatch => {
   dispatch({
@@ -57,8 +97,26 @@ export const editPost = post => dispatch => {
     headers: { 'Content-Type': 'application/json' },
   })
     .then(response => response.json())
-    .then(post => dispatch({ type: EDIT_POST_SUCCESS, post }))
-    .catch(error => dispatch({ type: EDIT_POST_FAIL, error }));
+    .then(post => {
+      dispatch(
+        notificationsActions.createNotification({
+          title: 'Post saved',
+          text: '',
+          type: 'success',
+        }),
+      );
+      return dispatch({ type: EDIT_POST_SUCCESS, post });
+    })
+    .catch(error => {
+      dispatch(
+        notificationsActions.createNotification({
+          title: 'Post not saved',
+          text: error.toString(),
+          type: 'error',
+        }),
+      );
+      return dispatch({ type: EDIT_POST_FAIL, error });
+    });
 };
 export const deletePost = id => dispatch => {
   dispatch({
@@ -69,8 +127,26 @@ export const deletePost = id => dispatch => {
     method: 'DELETE',
   })
     .then(response => response.json())
-    .then(() => dispatch({ type: DELETE_POST_SUCCESS, id }))
-    .catch(error => dispatch({ type: DELETE_POST_FAIL, error }));
+    .then(() => {
+      dispatch(
+        notificationsActions.createNotification({
+          title: 'Post deleted',
+          text: '',
+          type: 'success',
+        }),
+      );
+      return dispatch({ type: DELETE_POST_SUCCESS, id });
+    })
+    .catch(error => {
+      dispatch(
+        notificationsActions.createNotification({
+          title: 'Post not deleted',
+          text: error.toString(),
+          type: 'error',
+        }),
+      );
+      return dispatch({ type: DELETE_POST_FAIL, error });
+    });
 };
 
 export const selectPost = id => dispatch =>
@@ -157,9 +233,7 @@ const reducer = (state = initialState, action) => {
     case SELECT_POST:
       return {
         ...state,
-        selectedPost: action.id
-          ? state.items.find(item => item.id === action.id)
-          : {},
+        selectedPost: action.id ? state.items.find(item => item.id === action.id) : {},
       };
     default:
       return state;

@@ -1,0 +1,34 @@
+.notification-card {
+  width: 300px;
+}
+.notification-container {
+  display: flex;
+  justify-content: space-between;
+}
+.notification-icon {
+  display: flex;
+  align-items: center;
+  font-size: 2em;
+}
+.notification-content {
+  flex-basis: 70%;
+  margin-top: -5;
+}
+.notification-close-button {
+  cursor: pointer;
+  position: relative;
+  top: -10;
+  right: -5;
+}
+.notification-info {
+  color: blue;
+}
+.notification-success {
+  color: green;
+}
+.notification-warning {
+  color: orange;
+}
+.notification-error {
+  color: red;
+}
