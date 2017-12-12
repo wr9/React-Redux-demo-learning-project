@@ -9,17 +9,29 @@ const initialState = {
 
 // action creators
 export const createNotification = notification => dispatch => {
-  window.setTimeout(
+  let newNotification = {
+    title: '',
+    text: '',
+    id: Math.random(),
+    autoHideTime: 0,
+    type: '',
+  };
+  newNotification.title = notification.title;
+  newNotification.text = notification.text;
+  newNotification.autoHideTime = notification.autoHideTime;
+  newNotification.type = notification.type;
+
+  newNotification.timeoutId = window.setTimeout(
     () =>
       dispatch({
         type: DELETE_NOTIFICATION,
-        id: notification.id,
+        id: newNotification.id,
       }),
-    notification.autoHideTime,
+    newNotification.autoHideTime,
   );
   return dispatch({
     type: CREATE_NOTIFICATION,
-    notification,
+    notification: newNotification,
   });
 };
 export const deleteNotification = id => dispatch =>

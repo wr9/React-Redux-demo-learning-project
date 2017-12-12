@@ -36,8 +36,7 @@ export const loadPosts = () => dispatch => {
         notificationsActions.createNotification({
           title: 'Loading success',
           text: '',
-          id: Math.random(),
-          autoHideTime: 45000,
+          autoHideTime: 4500,
           type: 'success',
         }),
       );
@@ -48,7 +47,6 @@ export const loadPosts = () => dispatch => {
         notificationsActions.createNotification({
           title: 'Loading error',
           text: error.toString(),
-          id: Math.random(),
           autoHideTime: 4500,
           type: 'error',
         }),
@@ -74,7 +72,6 @@ export const createPost = post => dispatch => {
         notificationsActions.createNotification({
           title: 'Post created',
           text: '',
-          id: Math.random(),
           autoHideTime: 4500,
           type: 'success',
         }),
@@ -86,7 +83,6 @@ export const createPost = post => dispatch => {
         notificationsActions.createNotification({
           title: 'Post not saved',
           text: error.toString(),
-          id: Math.random(),
           autoHideTime: 4500,
           type: 'error',
         }),
@@ -110,7 +106,6 @@ export const editPost = post => dispatch => {
         notificationsActions.createNotification({
           title: 'Post saved',
           text: '',
-          id: Math.random(),
           autoHideTime: 4500,
           type: 'success',
         }),
@@ -122,7 +117,6 @@ export const editPost = post => dispatch => {
         notificationsActions.createNotification({
           title: 'Post not saved',
           text: error.toString(),
-          id: Math.random(),
           autoHideTime: 4500,
           type: 'error',
         }),
@@ -144,7 +138,6 @@ export const deletePost = id => dispatch => {
         notificationsActions.createNotification({
           title: 'Post deleted',
           text: '',
-          id: Math.random(),
           autoHideTime: 4500,
           type: 'success',
         }),
@@ -156,7 +149,6 @@ export const deletePost = id => dispatch => {
         notificationsActions.createNotification({
           title: 'Post not deleted',
           text: error.toString(),
-          id: Math.random(),
           autoHideTime: 4500,
           type: 'error',
         }),
