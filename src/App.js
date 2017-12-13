@@ -7,6 +7,7 @@ import { selectPost, loadPosts } from 'redux/modules/posts';
 import PostList from 'containers/Post/PostList';
 import PostDetailed from 'containers/Post/PostDetailed';
 import PostForm from 'containers/Post/PostForm';
+import PostSearch from 'containers/Post/PostSearch';
 import NotificationStack from 'containers/NotificationStack/NotificationStack';
 
 import './App.css';
@@ -39,6 +40,7 @@ class App extends Component {
               <Route path="/post/:id" component={PostDetailed} />
               <Route path="/edit/:id" component={PostForm} />
               <Route path="/create" component={PostForm} />
+              <Route path="/search" component={PostSearch} />
             </div>
           </div>
         </Content>
