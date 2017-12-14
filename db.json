@@ -1,25 +1,18 @@
 {
   "posts": [
     {
-      "title": "gfh",
-      "text": "ghf",
-      "author": "test",
-      "id": "TPhis6C",
-      "dateCreated": "2017-09-03"
+      "title": "dfgh",
+      "text": "hgfhfg",
+      "author": "dggfhhh",
+      "dateCreated": 1513246356988,
+      "id": "F38idkn"
     },
     {
-      "title": "dfsdf",
-      "text": "sdfsf",
-      "author": "test",
-      "id": "Td437Wl",
-      "dateCreated": "2017-09-03"
-    },
-    {
-      "title": "fd",
-      "text": "fdg",
-      "author": "test1",
-      "dateCreated": 1513009319563,
-      "id": "pK8jJcF"
+      "title": "gfhg",
+      "text": "fhhjg",
+      "author": "ghjgjhjgh",
+      "dateCreated": 1513246533153,
+      "id": "sTmPARM"
     },
     {
       "title": "fdg",
@@ -36,18 +29,11 @@
       "id": "kGKs8oF"
     },
     {
-      "title": "dfgh",
-      "text": "hgfhfg",
-      "author": "dggfhhh",
-      "dateCreated": 1513246356988,
-      "id": "F38idkn"
-    },
-    {
-      "title": "gfhg",
-      "text": "fhhjg",
-      "author": "ghjgjhjgh",
-      "dateCreated": 1513246533153,
-      "id": "sTmPARM"
+      "title": "Dgdfgf",
+      "text": "fgd",
+      "author": "dfg",
+      "dateCreated": 1513258876897,
+      "id": "_KN4Goc"
     }
   ]
 }

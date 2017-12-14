@@ -1,10 +1,14 @@
+import sorts from 'constants/sorts';
+
 // action types
-const SELECT_AUTHOR = 'whatever/sorts/SELECT_AUTHOR';
-const UNSELECT_AUTHOR = 'whatever/sorts/UNSELECT_AUTHOR';
+const SELECT_AUTHOR = 'whatever/search/SELECT_AUTHOR';
+const UNSELECT_AUTHOR = 'whatever/search/UNSELECT_AUTHOR';
+const SELECT_SORT = 'whatever/search/SELECT_SORT';
+const UNSELECT_SORT = 'whatever/search/UNSELECT_SORT';
 
 // initial state
 const initialState = {
-  sorts: [],
+  sorts: sorts,
   selectedSort: null,
   selectedAuthor: null,
 };
@@ -21,6 +25,17 @@ export const unselectAuthor = () => {
     type: UNSELECT_AUTHOR,
   };
 };
+export const selectSort = sort => {
+  return {
+    type: SELECT_SORT,
+    sort,
+  };
+};
+export const unselectSort = () => {
+  return {
+    type: UNSELECT_SORT,
+  };
+};
 
 // reducer
 const reducer = (state = initialState, action) => {
@@ -34,6 +49,16 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         selectedAuthor: null,
+      };
+    case SELECT_SORT:
+      return {
+        ...state,
+        selectedSort: action.sort,
+      };
+    case UNSELECT_SORT:
+      return {
+        ...state,
+        selectedSort: null,
       };
     default:
       return state;

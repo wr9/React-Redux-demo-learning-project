@@ -56,6 +56,7 @@ class AuthorFilter extends Component {
     const {query, selectedAuthor, filteredAuthors} = this.state;
     return (
       <div>
+        <h3>Filter</h3>
         <input
           value={query}
           onChange={this.handleAutocompleteChange}
