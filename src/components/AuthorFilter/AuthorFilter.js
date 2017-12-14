@@ -19,7 +19,7 @@ class AuthorFilter extends Component {
       query: event.target.value,
     };
     if (this.state.selectedAuthor) {
-      this.props.handleSelect(null);
+      this.props.handleUnselect();
       newState.selectedAuthor = '';
     }
 
@@ -45,30 +45,26 @@ class AuthorFilter extends Component {
     this.props.authors.forEach(author => {
       resultsWithDistances.push({
         author: author,
-        distance: leven(author, this.state.query),
+        distance: leven(author, this.state.query) + 1,
       });
     });
-    console.log(resultsWithDistances)
-    console.log(resultsWithDistances.sort((a, b) => a.distance - b.distance))
-    resultsWithDistances.sort(result => result.distance).reverse();
-    //let filteredAuthors = this.props.authors.filter(author => author.includes(this.state.query));
-    console.log(resultsWithDistances)
-    console.log(resultsWithDistances.slice(0, 5))
+    resultsWithDistances.sort((a, b) => a.distance - b.distance);
     return resultsWithDistances.slice(0, 5).map(result => result.author);
   };
 
   render() {
+    const {query, selectedAuthor, filteredAuthors} = this.state;
     return (
       <div>
         <input
-          value={this.state.query}
+          value={query}
           onChange={this.handleAutocompleteChange}
           placeholder="author"
         />
-        {this.state.query &&
-          !this.state.selectedAuthor && (
+        {query &&
+          !selectedAuthor && (
             <div className="dropdown-content">
-              {this.state.filteredAuthors.map(author => (
+              {filteredAuthors.map(author => (
                 <div key={author}>
                   <div
                     className="dropdown-content-element"

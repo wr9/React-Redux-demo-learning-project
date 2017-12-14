@@ -1,5 +1,6 @@
 // action types
 const SELECT_AUTHOR = 'whatever/sorts/SELECT_AUTHOR';
+const UNSELECT_AUTHOR = 'whatever/sorts/UNSELECT_AUTHOR';
 
 // initial state
 const initialState = {
@@ -15,6 +16,11 @@ export const selectAuthor = author => {
     author,
   };
 };
+export const unselectAuthor = () => {
+  return {
+    type: UNSELECT_AUTHOR,
+  };
+};
 
 // reducer
 const reducer = (state = initialState, action) => {
@@ -23,6 +29,11 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         selectedAuthor: action.author,
+      };
+    case UNSELECT_AUTHOR:
+      return {
+        ...state,
+        selectedAuthor: null,
       };
     default:
       return state;

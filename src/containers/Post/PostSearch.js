@@ -3,7 +3,7 @@ import AuthorFilter from 'components/AuthorFilter/AuthorFilter';
 
 import { connect } from 'react-redux';
 import { loadPosts } from 'redux/modules/posts';
-import { selectAuthor } from 'redux/modules/search';
+import { selectAuthor, unselectAuthor } from 'redux/modules/search';
 import { getFilteredPosts } from 'redux/selectors/posts';
 import { getAuthors } from 'redux/selectors/authors';
 
@@ -13,7 +13,7 @@ class PostSearch extends Component {
   }
 
   render() {
-    const { posts } = this.props;
+    const { posts, authors, selectAuthor, unselectAuthor } = this.props;
 
     return (
       <div style={{ display: 'flex', flexWrap: 'wrap' }}>
@@ -31,7 +31,11 @@ class PostSearch extends Component {
           ))}
         </div>
         <div style={{ display: 'flex', flexBasis: '60%', flexWrap: 'wrap' }}>
-          <AuthorFilter authors={this.props.authors} handleSelect={this.props.selectAuthor} />
+          <AuthorFilter
+            authors={authors}
+            handleSelect={selectAuthor}
+            handleUnselect={unselectAuthor}
+          />
           <h3>Sort by</h3>
         </div>
       </div>
@@ -48,6 +52,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   loadPosts: () => dispatch(loadPosts()),
   selectAuthor: author => dispatch(selectAuthor(author)),
+  unselectAuthor: () => dispatch(unselectAuthor()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(PostSearch);
