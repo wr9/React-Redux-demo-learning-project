@@ -4,9 +4,15 @@ import Sorts from 'components/Sorts';
 
 import { connect } from 'react-redux';
 import { loadPosts } from 'redux/modules/posts';
-import { selectAuthor, unselectAuthor, selectSort, unselectSort } from 'redux/modules/search';
+import {
+  selectAuthor,
+  unselectAuthor,
+  selectSort,
+  unselectSort,
+  setAuthorFilterQuery,
+} from 'redux/modules/search';
 import { getSortedFilteredPosts } from 'redux/selectors/posts';
-import { getAuthors } from 'redux/selectors/authors';
+import { getFilteredAuthors } from 'redux/selectors/authors';
 
 import './PostSearch.css';
 
@@ -24,6 +30,7 @@ class PostSearch extends Component {
       sorts,
       selectSort,
       unselectSort,
+      setAuthorFilterQuery,
     } = this.props;
     return (
       <div className="search-wrapper">
@@ -45,9 +52,10 @@ class PostSearch extends Component {
         <div className="search-tools">
           <div>
             <AuthorFilter
-              authors={authors}
+              filteredAuthors={authors}
               handleSelect={selectAuthor}
               handleUnselect={unselectAuthor}
+              handleQueryChange={setAuthorFilterQuery}
             />
           </div>
           <Sorts sorts={sorts} handleSelect={selectSort} handleUnselect={unselectSort} />
@@ -59,7 +67,7 @@ class PostSearch extends Component {
 
 const mapStateToProps = state => ({
   posts: getSortedFilteredPosts(state),
-  authors: getAuthors(state),
+  authors: getFilteredAuthors(state),
   sorts: state.search.sorts,
 });
 
@@ -69,6 +77,7 @@ const mapDispatchToProps = dispatch => ({
   unselectAuthor: () => dispatch(unselectAuthor()),
   selectSort: sort => dispatch(selectSort(sort)),
   unselectSort: () => dispatch(unselectSort()),
+  setAuthorFilterQuery: query => dispatch(setAuthorFilterQuery(query)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(PostSearch);

@@ -5,12 +5,14 @@ const SELECT_AUTHOR = 'whatever/search/SELECT_AUTHOR';
 const UNSELECT_AUTHOR = 'whatever/search/UNSELECT_AUTHOR';
 const SELECT_SORT = 'whatever/search/SELECT_SORT';
 const UNSELECT_SORT = 'whatever/search/UNSELECT_SORT';
+const SET_AUTHOR_FILTER_QUERY = 'whatever/search/SET_AUTHOR_FILTER_QUERY';
 
 // initial state
 const initialState = {
   sorts: sorts,
   selectedSort: null,
   selectedAuthor: null,
+  authorFilterQuery: null,
 };
 
 // action creators
@@ -36,6 +38,12 @@ export const unselectSort = () => {
     type: UNSELECT_SORT,
   };
 };
+export const setAuthorFilterQuery = query => {
+  return {
+    type: SET_AUTHOR_FILTER_QUERY,
+    query,
+  };
+};
 
 // reducer
 const reducer = (state = initialState, action) => {
@@ -59,6 +67,11 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         selectedSort: null,
+      };
+    case SET_AUTHOR_FILTER_QUERY:
+      return {
+        ...state,
+        authorFilterQuery: action.query === '' ? null : action.query,
       };
     default:
       return state;

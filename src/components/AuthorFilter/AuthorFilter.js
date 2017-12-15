@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import leven from 'leven';
-
 import './AuthorFilter.css';
 
 class AuthorFilter extends Component {
@@ -10,7 +8,6 @@ class AuthorFilter extends Component {
       query: '',
       selectedAuthor: '',
       loading: false,
-      filteredAuthors: this.props.authors,
     };
   }
 
@@ -27,8 +24,8 @@ class AuthorFilter extends Component {
       newState.loading = true;
 
       window.setTimeout(() => {
-        let filteredAuthors = this.filterAuthors();
-        this.setState({ filteredAuthors: filteredAuthors, loading: false });
+        this.props.handleQueryChange(this.state.query)
+        this.setState({ loading: false });
       }, 100);
     }
 
@@ -40,20 +37,9 @@ class AuthorFilter extends Component {
     this.setState({ query: author, selectedAuthor: author });
   };
 
-  filterAuthors = () => {
-    let resultsWithDistances = [];
-    this.props.authors.forEach(author => {
-      resultsWithDistances.push({
-        author: author,
-        distance: leven(author, this.state.query) + 1,
-      });
-    });
-    resultsWithDistances.sort((first, second) => first.distance - second.distance);
-    return resultsWithDistances.slice(0, 5).map(result => result.author);
-  };
-
   render() {
-    const { query, selectedAuthor, filteredAuthors } = this.state;
+    const { query, selectedAuthor } = this.state;
+    const { filteredAuthors } = this.props;
     return (
       <div>
         <h3>Filter</h3>
