@@ -7,6 +7,7 @@ import { selectPost, loadPosts } from 'redux/modules/posts';
 import PostList from 'containers/Post/PostList';
 import PostDetailed from 'containers/Post/PostDetailed';
 import PostForm from 'containers/Post/PostForm';
+import PostSearch from 'containers/Post/PostSearch/PostSearch';
 import NotificationStack from 'containers/NotificationStack/NotificationStack';
 
 import './App.css';
@@ -18,7 +19,7 @@ class App extends Component {
   render() {
     return (
       <Layout className="layout">
-      <NotificationStack />
+        <NotificationStack />
         <Header>
           <div className="logo" />
           <Menu theme="dark" mode="horizontal" style={{ lineHeight: '64px' }}>
@@ -30,6 +31,9 @@ class App extends Component {
                 New
               </Link>
             </Menu.Item>
+            <Menu.Item key="3">
+              <Link to="/search">Search</Link>
+            </Menu.Item>
           </Menu>
         </Header>
         <Content>
@@ -39,6 +43,7 @@ class App extends Component {
               <Route path="/post/:id" component={PostDetailed} />
               <Route path="/edit/:id" component={PostForm} />
               <Route path="/create" component={PostForm} />
+              <Route path="/search" component={PostSearch} />
             </div>
           </div>
         </Content>
