@@ -1,4 +1,5 @@
 import { createSelector } from 'reselect';
+import helperService from 'services/helperService';
 
 const getSelectedAuthor = state => state.search.selectedAuthor;
 const getPosts = state => state.posts;
@@ -31,22 +32,16 @@ export const getSortedFilteredPosts = createSelector(
   (selectedSort, posts) => {
     if (!selectedSort) return posts;
     let items = [...posts.items];
-    items.sort((a, b) => {
-      if (a[selectedSort.property].toLowerCase && b[selectedSort.property].toLowerCase) {
-        return selectedSort.ascending
-          ? a[selectedSort.property].toLowerCase() > b[selectedSort.property].toLowerCase()
-          : a[selectedSort.property].toLowerCase() < b[selectedSort.property].toLowerCase();
-      }
-      return selectedSort.ascending
-        ? a[selectedSort.property] > b[selectedSort.property]
-        : a[selectedSort.property] < b[selectedSort.property];
-    });
+    items.sort((first, second) =>
+      helperService.comparePropertiesForSort(
+        first[selectedSort.property],
+        second[selectedSort.property],
+        selectedSort.ascending,
+      ),
+    );
     return {
       ...posts,
       items,
     };
   },
 );
-
-// const compareLetters = () => { // services
-// }

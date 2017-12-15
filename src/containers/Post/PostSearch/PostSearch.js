@@ -8,31 +8,41 @@ import { selectAuthor, unselectAuthor, selectSort, unselectSort } from 'redux/mo
 import { getSortedFilteredPosts } from 'redux/selectors/posts';
 import { getAuthors } from 'redux/selectors/authors';
 
+import './PostSearch.css';
+
 class PostSearch extends Component {
   componentDidMount() {
     this.props.loadPosts();
   }
 
   render() {
-    const { posts, authors, selectAuthor, unselectAuthor, sorts, selectSort, unselectSort } = this.props;
+    const {
+      posts,
+      authors,
+      selectAuthor,
+      unselectAuthor,
+      sorts,
+      selectSort,
+      unselectSort,
+    } = this.props;
     return (
-      <div style={{ display: 'flex', flexWrap: 'wrap' }}>
-        <h2 style={{ flexBasis: '100%' }}>Posts</h2>
-        <div style={{ display: 'flex', flexBasis: '60%', flexWrap: 'wrap' }}>
-          <b style={{ flexBasis: '33%' }}>Title</b>
-          <b style={{ flexBasis: '33%' }}>Author</b>
-          <b style={{ flexBasis: '33%' }}>Date created</b>
+      <div className="search-wrapper">
+        <h2 className="search-title">Posts</h2>
+        <div className="search-table">
+          <b className="search-table-column">Title</b>
+          <b className="search-table-column">Author</b>
+          <b className="search-table-column">Date created</b>
           {posts.items.map(post => (
-            <div style={{ flexBasis: '100%', display: 'flex' }} key={post.id}>
-              <div style={{ flexBasis: '33%' }}>{post.title}</div>
-              <div style={{ flexBasis: '33%' }}>{post.author}</div>
-              <div style={{ flexBasis: '33%' }}>{new Date(post.dateCreated).toLocaleString()}</div>
+            <div className="search-results" key={post.id}>
+              <div className="search-table-column">{post.title}</div>
+              <div className="search-table-column">{post.author}</div>
+              <div className="search-table-column">
+                {new Date(post.dateCreated).toLocaleString()}
+              </div>
             </div>
           ))}
         </div>
-        <div
-          style={{ display: 'flex', flexBasis: '40%', flexWrap: 'wrap', flexDirection: 'column' }}
-        >
+        <div className="search-tools">
           <div>
             <AuthorFilter
               authors={authors}

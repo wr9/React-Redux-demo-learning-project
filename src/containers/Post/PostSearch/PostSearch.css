@@ -1,0 +1,25 @@
+.search-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+}
+.search-title {
+  flex-basis: 100%;
+}
+.search-table {
+  display: flex;
+  flex-wrap: wrap;
+  flex-basis: 40%;
+}
+.search-table-column {
+  flex-basis: 33%;
+}
+.search-results {
+  display: flex;
+  flex-basis: 100%;
+}
+.search-tools {
+  display: flex;
+  flex-wrap: wrap;
+  flex-basis: 40%;
+  flex-direction: column;
+}

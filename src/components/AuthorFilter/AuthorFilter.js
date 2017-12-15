@@ -48,20 +48,16 @@ class AuthorFilter extends Component {
         distance: leven(author, this.state.query) + 1,
       });
     });
-    resultsWithDistances.sort((a, b) => a.distance - b.distance);
+    resultsWithDistances.sort((first, second) => first.distance - second.distance);
     return resultsWithDistances.slice(0, 5).map(result => result.author);
   };
 
   render() {
-    const {query, selectedAuthor, filteredAuthors} = this.state;
+    const { query, selectedAuthor, filteredAuthors } = this.state;
     return (
       <div>
         <h3>Filter</h3>
-        <input
-          value={query}
-          onChange={this.handleAutocompleteChange}
-          placeholder="author"
-        />
+        <input value={query} onChange={this.handleAutocompleteChange} placeholder="author" />
         {query &&
           !selectedAuthor && (
             <div className="dropdown-content">
